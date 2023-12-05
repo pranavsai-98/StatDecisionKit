@@ -3,7 +3,6 @@ import scipy.stats as stats
 import numpy as np
 
 
-@staticmethod
 class StatisticalTestRunner:
     """
     This class provides various statistical tests and analysis methods.
