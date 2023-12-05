@@ -104,6 +104,30 @@ class StatisticalTestRunner:
 
         return data[significant_features + [target_variable]]
 
+    @staticmethod
+    def execute_statistical_test(data, feature1, feature2=None, detailed=False, handle_missing='remove'):
+        """
+        Execute the appropriate statistical test based on the test name and input features.
+
+        :param data: The dataset (pandas DataFrame).
+        :param feature1: The name of the first feature (column).
+        :param feature2: The name of the second feature (column), optional.
+        :param test_name: The name of the test to be executed.
+        :param detailed: Boolean to determine if detailed results are needed.
+        :param handle_missing: Strategy for handling missing data ('remove' or 'impute').
+        :return: Test result (summary or detailed).
+        """
+    # Handle missing data
+        if handle_missing == 'remove':
+            data = data.dropna(subset=[feature1] if feature2 is None else [
+                               feature1, feature2])
+        elif handle_missing == 'impute':
+            for feature in [feature1, feature2]:
+                if feature and pd.api.types.is_numeric_dtype(data[feature]):
+                    data[feature].fillna(data[feature].mean(), inplace=True)
+                elif feature:
+                    data[feature].fillna(data[feature].mode()[0], inplace=True)
+
         # Helper functions for each test
         def perform_z_test(sample):
             mean = sample.mean()
