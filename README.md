@@ -35,3 +35,5 @@ To install this library, you can use the following command:
 
 ```bash
 pip install git+https://github.com/pranavsai-98/StatDecisionKit.git
+import StatDecisionKit as sdk
+
