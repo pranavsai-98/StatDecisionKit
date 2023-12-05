@@ -3,6 +3,7 @@ import scipy.stats as stats
 import numpy as np
 
 
+@staticmethod
 class StatisticalTestRunner:
     """
     This class provides various statistical tests and analysis methods.
@@ -26,7 +27,7 @@ class StatisticalTestRunner:
             return 'numerical'
         else:
             return 'categorical'
-    
+
     @staticmethod
     def determine_statistical_test(data, feature1, feature2=None, paired=False):
         """
@@ -70,7 +71,7 @@ class StatisticalTestRunner:
                 return "ANOVA"
 
         return "Unable to determine an appropriate test"
-        
+
     @staticmethod
     def analyze_features(data, target_variable, alpha=0.05):
         """
